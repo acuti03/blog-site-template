@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Card,
   CardContent,
@@ -9,26 +7,16 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import { getSortedPostsData } from "@/lib/posts";
 import { Search } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 //import Logo from "@/public/Logo.png";
 
 
 export default function Home() {
 
-  function getRandomSize() {
-    const width = Math.floor(Math.random() * (700 - 300 + 1)) + 300;
-    const height = Math.floor(Math.random() * (900 - 500 + 1)) + 500;
-    return { width, height };
-  }
-
   //const dd = Array.from({ length: 12 }).map(() => getRandomSize());
-  const [cardData, setCardData] = useState<Array<{width: number, height: number}> | null>(null);
-
-  useEffect(() => {
-    setCardData(Array.from({ length: 12 }).map(() => getRandomSize()));
-  }, []);
+  const posts = getSortedPostsData();
 
 
   return (
@@ -51,19 +39,19 @@ export default function Home() {
         </div>
       </div>
       <Separator className="my-4" />
-      <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4 p-4">
-      {cardData && cardData.map(({ width, height }, idx) => (
+      <div className="columns-2 gap-4 space-y-4 p-4 border w-full">
+      {posts.map(({ date, title, image, width, height }, idx) => (
         <div key={idx} className="break-inside-avoid">
           <Card className="w-full shadow-none border-none">
             <CardHeader>
-              <CardTitle className="text-2xl">Create project</CardTitle>
+              <CardTitle className="text-2xl">{title}</CardTitle>
               <CardDescription>
-                Deploy your new project in one-click.
+                {date}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <Image
-                src={`https://placehold.co/${width}x${height}.png`}
+                src={image}
                 alt="Iron Blog Cover"
                 className="w-full h-auto object-cover rounded-md"
                 width={width}
