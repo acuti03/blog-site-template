@@ -4,6 +4,16 @@ import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
 
+type FrontMatter = {
+  title: string,
+  date: string,
+  image: {
+    link: string,
+    width: number,
+    height: number
+  }
+}
+
 const postsDirectory = path.join(process.cwd(), 'posts');
 
 export function getSortedPostsData() {
@@ -23,7 +33,7 @@ export function getSortedPostsData() {
     // Combine the data with the id
     return {
       id,
-      ...(matterResult.data as { date: string; title: string; image: string; width: number; height: number }),
+      ...(matterResult.data as FrontMatter),
     };
   });
   // Sort posts by date
@@ -64,6 +74,6 @@ export async function getPostData(id: string) {
   return {
     id,
     contentHtml,
-    ...(matterResult.data as { date: string; title: string; image: string; width: number; height: number }),
+    ...(matterResult.data as FrontMatter),
   };
 }
