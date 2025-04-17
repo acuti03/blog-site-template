@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
 
-type FrontMatter = {
+export type FrontMatter = {
   title: string,
   date: string,
   image: {

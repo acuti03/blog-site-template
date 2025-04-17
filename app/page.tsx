@@ -1,15 +1,8 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import CustomCard from "@/components/customCard";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { getSortedPostsData } from "@/lib/posts";
 import { Search } from "lucide-react";
-import Image from "next/image";
 //import Logo from "@/public/Logo.png";
 
 export default function Home() {
@@ -38,24 +31,7 @@ export default function Home() {
       <div className="columns-1 sm:columns-2 md:columns-2 lg:columns-3 xl:columns-4 gap-4 p-4 w-full">
         {posts.map((frontMatter, idx) => (
           <div key={idx} className="break-inside-avoid">
-          <Card
-            key={idx}
-            className="mb-4 w-full shadow-none border-none animate-appear"
-          >
-            <CardHeader>
-              <CardTitle className="text-2xl">{frontMatter.title}</CardTitle>
-              <CardDescription>{frontMatter.date}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Image
-                src={frontMatter.image.link}
-                alt="Iron Blog Cover"
-                className="w-full h-auto object-cover rounded-md"
-                width={frontMatter.image.width}
-                height={frontMatter.image.height}
-              />
-            </CardContent>
-          </Card>
+            <CustomCard idx={idx} frontMatter={frontMatter} />
           </div>
         ))}
       </div>

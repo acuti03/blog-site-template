@@ -5,24 +5,44 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 
-
-
 type Routes = "premise" | "home" | "archive";
 
 export default function Navbar() {
-  const pathname = usePathname();
 
+  const pathname = usePathname();
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [showNavbar, setShowNavbar] = useState(true);
   const [active, setActive] = useState<Routes | null>(null);
 
   useEffect(() => {
-    const route = pathname === "/" ? "home" : (pathname.slice(1, pathname.length) as Routes);
+    const route =
+      pathname === "/"
+        ? "home"
+        : (pathname.slice(1, pathname.length) as Routes);
 
     setActive(route);
+  }, [pathname]);
 
-  }, [pathname])
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setShowNavbar(currentScrollY < lastScrollY);
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   return (
-    <nav className="inline-flex justify-center left-1/2 -translate-x-1/2 w-fit gap-3 fixed bottom-4 shadow-lg rounded-3xl border bg-white cursor-pointer py-2 px-3">
+    <nav
+      className={cn(
+        "inline-flex justify-center left-1/2 -translate-x-1/2 w-fit gap-3 fixed bottom-4 shadow-lg rounded-3xl border bg-white cursor-pointer py-2 px-3",
+        showNavbar ? "animate-fade-in" : "animate-fade-out",
+        pathname.includes("/posts/") && "hidden",
+      )}
+    >
       <Link
         href="/premise"
         className={cn(

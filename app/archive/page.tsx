@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function page() {
   return (
-    <div>archive</div>
+    <div className='flex felx-col items-center'>archive</div>
   )
 }

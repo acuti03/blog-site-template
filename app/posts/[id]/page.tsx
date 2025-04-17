@@ -30,7 +30,7 @@ export default async function page({ params } : { params: Promise<{id: string}> 
   console.log("html:", postData.contentHtml);
 
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <div>
         <title>{postData.title}</title>
       </div>
