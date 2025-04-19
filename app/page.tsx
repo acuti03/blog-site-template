@@ -1,8 +1,7 @@
 import CustomCard from "@/components/customCard";
-import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { getSortedPostsData } from "@/lib/posts";
-import { Search } from "lucide-react";
+import SearchBar from "@/components/searchBar";
 //import Logo from "@/public/Logo.png";
 
 export default function Home() {
@@ -17,14 +16,7 @@ export default function Home() {
           IronBlog
         </h2>
         <div className="w-1/3 flex justify-end">
-          <div className="relative">
-            <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="Search"
-              className="w-48 pl-7 rounded-2xl"
-            />
-          </div>
+          <SearchBar />
         </div>
       </div>
       <Separator className="my-4" />

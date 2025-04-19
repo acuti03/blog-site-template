@@ -27,7 +27,7 @@ export default function CustomCard({ idx, frontMatter } : Props) {
       className="mb-4 w-full shadow-none border-none animate-appear"
     >
       <CardHeader>
-        <CardTitle className="text-2xl hover:text-blue-500 cursor-pointer" onClick={() => router.push(`/posts/${frontMatter.id}`)}>
+        <CardTitle className="text-2xl hover:text-[#0070f3] cursor-pointer" onClick={() => router.push(`/posts/${frontMatter.id}`)}>
           {frontMatter.title}
         </CardTitle>
         <CardDescription>{frontMatter.date}</CardDescription>
