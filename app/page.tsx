@@ -4,9 +4,15 @@ import { getSortedPostsData } from "@/lib/posts";
 import SearchBar from "@/components/searchBar";
 //import Logo from "@/public/Logo.png";
 
-export default function Home() {
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
+
+export default async function Home(props : { searchParams: SearchParams }) {
   //const dd = Array.from({ length: 12 }).map(() => getRandomSize());
   const posts = getSortedPostsData();
+  const searchParams = await props.searchParams;
+  const { q } = searchParams;
+
+  console.log("query: ", q);
 
   return (
     <div className="flex flex-col items-center">
@@ -16,7 +22,9 @@ export default function Home() {
           IronBlog
         </h2>
         <div className="w-1/3 flex justify-end">
-          <SearchBar />
+          <div className="relative">
+            <SearchBar />
+          </div>
         </div>
       </div>
       <Separator className="my-4" />
