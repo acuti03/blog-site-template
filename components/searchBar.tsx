@@ -10,20 +10,22 @@ export default function SearchBar() {
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
 
-  const onSearch = (event: React.FormEvent) => {
+  const onSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
 
-    event.preventDefault();
+    const query = event.target.value;
+    console.log(event.target.value);
+    setSearchQuery(query);
 
-    const encodedSearchQuery = encodeURI(searchQuery);
-    router.push(`?q=${encodedSearchQuery}`);
+    const encodedSearchQuery = encodeURI(query);
+    router.replace(`?q=${encodedSearchQuery}`);
   }
 
   return (
-    <form onSubmit={onSearch}>
+    <form onSubmit={(e) => e.preventDefault()}>
       <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
       <Input
         value={searchQuery}
-        onChange={(event) => setSearchQuery(event.target.value)}
+        onChange={onSearch}
         type="text"
         placeholder="Search"
         className="w-48 pl-7 rounded-2xl"

@@ -1,10 +1,10 @@
-import CustomCard from "@/components/customCard";
 import { Separator } from "@/components/ui/separator";
 import { getSortedPostsData } from "@/lib/posts";
 import SearchBar from "@/components/searchBar";
+import Posts from "@/components/Posts";
 //import Logo from "@/public/Logo.png";
 
-type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
+type SearchParams = Promise<{ [key: string]: string | undefined }>
 
 export default async function Home(props : { searchParams: SearchParams }) {
   //const dd = Array.from({ length: 12 }).map(() => getRandomSize());
@@ -12,7 +12,7 @@ export default async function Home(props : { searchParams: SearchParams }) {
   const searchParams = await props.searchParams;
   const { q } = searchParams;
 
-  console.log("query: ", q);
+  console.log("query:", q);
 
   return (
     <div className="flex flex-col items-center">
@@ -29,11 +29,7 @@ export default async function Home(props : { searchParams: SearchParams }) {
       </div>
       <Separator className="my-4" />
       <div className="columns-1 sm:columns-2 md:columns-2 lg:columns-3 xl:columns-4 gap-4 p-4 w-full">
-        {posts.map((frontMatter, idx) => (
-          <div key={idx} className="break-inside-avoid">
-            <CustomCard idx={idx} frontMatter={frontMatter} />
-          </div>
-        ))}
+        <Posts q={q} allPosts={posts} />
       </div>
     </div>
   );
