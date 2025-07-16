@@ -11,7 +11,8 @@ export type FrontMatter = {
     link: string,
     width: number,
     height: number
-  }
+  },
+  tags: string[]
 }
 
 const postsDirectory = path.join(process.cwd(), 'posts');
@@ -76,4 +77,9 @@ export async function getPostData(id: string) {
     contentHtml,
     ...(matterResult.data as FrontMatter),
   };
+}
+
+export function getLatestPosts(limit: number = 4) {
+  const sortedPosts = getSortedPostsData();
+  return sortedPosts.slice(0, limit);
 }

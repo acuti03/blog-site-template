@@ -2,8 +2,8 @@ import { getPostData } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import React from "react";
 import Date from "@/components/date";
-import Link from "next/link";
 import Image from "next/image";
+import BackButton from "@/components/backButton";
 
 async function getData({ params }: { params: Promise<{ id: string }> }) {
   const postData = await getPostData((await params).id);
@@ -55,9 +55,7 @@ export default async function page({
           className="prose prose-neutral dark:prose-invert"
           dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
         />
-        <Link href="/" replace className="text-[#0070f3] font-medium mt-[10%]">
-          ← Back to home
-        </Link>
+        <BackButton />
       </article>
     </div>
   );

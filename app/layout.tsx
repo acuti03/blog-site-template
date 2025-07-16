@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased container py-4 mx-auto overflow-y-scroll`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased container py-4 mx-auto`}
       >
         <Navbar />
         {children}

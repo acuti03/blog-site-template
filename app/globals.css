@@ -144,4 +144,11 @@
   }
 }
 
+/* Mantieni la larghezza della pagina stabile anche quando la scrollbar scompare */
+html {
+  scrollbar-gutter: stable;
+}
+
+
+
 @plugin "@tailwindcss/typography";

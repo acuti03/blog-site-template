@@ -6,6 +6,7 @@ image: {
   width: 600,
   height: 400
 }
+tags: ["React", "Nextjs"]
 ---
 
 Next.js has two forms of pre-rendering: **Static Generation** and **Server-side Rendering**. The difference is in **when** it generates the HTML for a page.

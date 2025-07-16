@@ -5,7 +5,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 
-type Routes = "premise" | "home" | "archive";
+type Routes = "about" | "home" | "archivio";
 
 export default function Navbar() {
 
@@ -40,35 +40,36 @@ export default function Navbar() {
       className={cn(
         "inline-flex justify-center left-1/2 -translate-x-1/2 w-fit gap-3 fixed bottom-4 shadow-lg rounded-3xl border bg-white cursor-pointer py-2 px-3",
         showNavbar ? "animate-fade-in" : "animate-fade-out",
+        !showNavbar && "pointer-events-none",
         pathname.includes("/posts/") && "hidden",
       )}
     >
       <Link
-        href="/premise"
+        href="/about"
         className={cn(
           "p-1 text-black transition-all duration-300 ease-in-out rounded-xl px-3",
-          active === "premise" && "bg-black text-white scale-110 shadow-lg"
+          active === "about" && "bg-sky-100 text-sky-500 scale-110"
         )}
       >
-        Premise
+        About
       </Link>
       <Link
         href="/"
         className={cn(
           "p-1 text-black transition-all duration-300 ease-in-out rounded-xl px-3",
-          active === "home" && "bg-black text-white scale-110 shadow-lg"
+          active === "home" && "bg-sky-100 text-sky-500 scale-110"
         )}
       >
         Home
       </Link>
       <Link
-        href="/archive"
+        href="/archivio"
         className={cn(
           "p-1 text-black transition-all duration-300 ease-in-out rounded-xl px-3",
-          active === "archive" && "bg-black text-white scale-110 shadow-lg"
+          active === "archivio" && "bg-sky-100 text-sky-500 scale-110"
         )}
       >
-        Archive
+        Archivio
       </Link>
     </nav>
   );
